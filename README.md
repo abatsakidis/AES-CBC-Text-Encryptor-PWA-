@@ -20,7 +20,7 @@ A lightweight **Progressive Web App (PWA)** built with HTML, JavaScript, and Cry
 ### 🔧 How to Use
 
 #### 🔹 Open the App
-Just open `index.html` in your browser, or deploy it online to benefit from full PWA functionality.
+Just open `AES-CBC-Text-Encryptor-PWA.html` in your browser, or deploy it online to benefit from full PWA functionality.
 
 #### 🔹 Encrypt Text
 - Type or paste your plain text into the top textarea.
