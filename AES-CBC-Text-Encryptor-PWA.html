@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AES CBC Encryptor (PWA)</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a1a1a">
+  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9f9f9; color: #333; }
+    textarea, input { width: 100%; max-width: 600px; margin-bottom: 1rem; }
+    button { margin-right: 1rem; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <h2>🔐 AES CBC - Encrypt / Decrypt (PWA)</h2>
+
+  <textarea id="text" rows="4" placeholder="Text or encrypted data..."></textarea>
+  <input type="password" id="password" placeholder="Password">
+
+  <div>
+    <button onclick="encryptText()">🔒 Encryption</button>
+    <button onclick="decryptText()">🔓 Decryption</button>
+    <button onclick="saveToFile()">💾 Save file</button>
+    <button onclick="loadFromFile()">📁 Load file</button>
+  </div>
+
+  <textarea id="output" rows="4" readonly placeholder="Result..."></textarea>
+  <input type="file" id="fileInput" accept=".txt" style="display:none" onchange="handleFileLoad(event)">
+
+  <script>
+    let lastOperation = "result";
+
+    function encryptText() {
+      const plaintext = document.getElementById('text').value;
+      const password = document.getElementById('password').value;
+      if (!plaintext || !password) return alert("Please fill in both fields.");
+
+      const key = CryptoJS.SHA256(password);
+      const iv = CryptoJS.lib.WordArray.random(16);
+
+      const encrypted = CryptoJS.AES.encrypt(plaintext, key, {
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+      });
+
+      const result = CryptoJS.enc.Base64.stringify(iv.concat(encrypted.ciphertext));
+      document.getElementById('output').value = result;
+      lastOperation = "encrypt";
+    }
+
+    function decryptText() {
+      const ciphertextB64 = document.getElementById('text').value;
+      const password = document.getElementById('password').value;
+      if (!ciphertextB64 || !password) return alert("Συμπληρώστε και τα δύο πεδία.");
+
+      try {
+        const rawData = CryptoJS.enc.Base64.parse(ciphertextB64);
+        const iv = CryptoJS.lib.WordArray.create(rawData.words.slice(0, 4));
+        const ciphertext = CryptoJS.lib.WordArray.create(rawData.words.slice(4), rawData.sigBytes - 16);
+        const key = CryptoJS.SHA256(password);
+
+        const decrypted = CryptoJS.AES.decrypt({ ciphertext: ciphertext }, key, {
+          iv: iv,
+          mode: CryptoJS.mode.CBC,
+          padding: CryptoJS.pad.Pkcs7
+        });
+
+        const result = decrypted.toString(CryptoJS.enc.Utf8);
+        document.getElementById('output').value = result || "❌ Decryption error.";
+        lastOperation = "decrypt";
+      } catch (e) {
+        document.getElementById('output').value = "❌ Decryption error.";
+      }
+    }
+
+    function saveToFile() {
+      const output = document.getElementById('output').value;
+      if (!output) return alert("There is no result to save..");
+
+      const blob = new Blob([output], { type: "text/plain;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = lastOperation === "encrypt" ? "encrypted.txt" : "decrypted.txt";
+      link.click();
+    }
+
+    function loadFromFile() {
+      document.getElementById('fileInput').click();
+    }
+
+    function handleFileLoad(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = e => document.getElementById('text').value = e.target.result;
+      reader.readAsText(file);
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service Worker registered', reg))
+        .catch(err => console.error('Service Worker error:', err));
+    }
+  </script>
+</body>
+</html>
