@@ -35,4 +35,4 @@ Install as PWA
 ⚠️ Make sure you remember your password. There is no way to recover data without it.
 
 <br>
-![Alt text](/screen.jpg?raw=true "AES CBC Text Encryptor (PWA)")
+![Alt text](screen.jpg?raw=true "AES CBC Text Encryptor (PWA)")
