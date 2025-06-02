@@ -1,17 +1,21 @@
-## Description ##
+# 🔐 AES CBC Text Encryptor (PWA)
 
-AES CBC Text Encryptor (PWA)
+A lightweight **Progressive Web App (PWA)** built with HTML, JavaScript, and CryptoJS that allows you to **encrypt and decrypt text** using **AES encryption in CBC mode** with **SHA-256 password hashing**.
 
-This is a lightweight Progressive Web App (PWA) built with HTML, JavaScript, and CryptoJS that allows users to encrypt and decrypt text using the AES encryption algorithm in CBC mode with SHA-256 password hashing. It supports:
+---
 
-*    AES encryption/decryption in CBC mode with PKCS7 padding
-*   Password-based key derivation using SHA-256
-*    Random IV generation per encryption
-*   Saving encrypted/decrypted results as .txt files
-*    Loading input text from files
-*    Offline functionality via service worker (PWA support)
+### ✨ Features
 
-Ideal for simple text protection tasks that can run entirely in the browser, even without internet access.
+- 🔒 AES encryption/decryption (CBC mode, PKCS7 padding)
+- 🔑 Password-based key derivation using SHA-256
+- 🔁 Random IV generation for each encryption
+- 💾 Save encrypted/decrypted results as `.txt` files
+- 📁 Load text input from local files
+- ⚙️ Offline functionality (PWA - installable web app)
+
+> Perfect for local, client-side text protection — no server or internet connection required.
+
+---
 
 ### 🔧 How to Use
 
@@ -40,4 +44,9 @@ Just open `index.html` in your browser, or deploy it online to benefit from full
 
 > ⚠️ **Note:** Always remember your password. Encrypted data cannot be recovered without the correct key.
 
-![Alt Text](screenshot/screen.jpg)
+---
+
+### 📸 Screenshot
+
+![App Screenshot](screenshot/screen.jpg)
+
