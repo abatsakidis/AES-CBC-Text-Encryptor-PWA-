@@ -35,4 +35,4 @@ Install as PWA
 ⚠️ Make sure you remember your password. There is no way to recover data without it.
 
 <br>
-![Screenshot](screen.jpg)
+![Alt Text](screenshot/screen.jpg)
