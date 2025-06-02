@@ -13,25 +13,31 @@ This is a lightweight Progressive Web App (PWA) built with HTML, JavaScript, and
 
 Ideal for simple text protection tasks that can run entirely in the browser, even without internet access.
 
-## How To ##
+### 🔧 How to Use
 
-* Open the App.<br>
-**Encrypt Text. <br>
-* Type or paste your plain text into the top textarea.
-* Enter your password in the password field.
-* Click 🔒 Encrypt.
-* The encrypted result will appear in the output field (Base64-encoded).<br>
-**Decrypt Text<br>
-* Paste the encrypted Base64 string into the top textarea.
-* Enter the password used for encryption.
-* Click 🔓 Decrypt to reveal the original text.<br>
-**Save to File<br>
-* After encryption or decryption, click 💾 Save to download the result as a .txt file.<br>
-* Load from File
-* Click 📁 Load File to upload a text file. Its contents will be loaded into the input field.<br>
-**Install as PWA<br>
-* If accessed from a browser that supports PWAs, you can install it to your device for offline use.
+#### 🔹 Open the App
+Just open `index.html` in your browser, or deploy it online to benefit from full PWA functionality.
 
-⚠️ Make sure you remember your password. There is no way to recover data without it.
+#### 🔹 Encrypt Text
+- Type or paste your plain text into the top textarea.
+- Enter your password in the password field.
+- Click 🔒 **Encrypt**.
+- The encrypted result will appear in the output field (Base64-encoded).
+
+#### 🔹 Decrypt Text
+- Paste the encrypted Base64 string into the top textarea.
+- Enter the password used for encryption.
+- Click 🔓 **Decrypt** to reveal the original text.
+
+#### 🔹 Save to File
+- After encryption or decryption, click 💾 **Save** to download the result as a `.txt` file.
+
+#### 🔹 Load from File
+- Click 📁 **Load File** to upload a text file. Its contents will be loaded into the input field.
+
+#### 🔹 Install as PWA
+- If accessed from a browser that supports PWAs, you can install it to your device for offline use.
+
+> ⚠️ **Note:** Always remember your password. Encrypted data cannot be recovered without the correct key.
 
 ![Alt Text](screenshot/screen.jpg)
